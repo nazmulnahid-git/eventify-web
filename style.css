@@ -1,0 +1,262 @@
+/* style.css */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
+
+/* Custom Styles */
+:root {
+  --primary-color: #6a0dad;
+  --secondary-color: #f8f9fa;
+  --accent-color: #ff6b6b;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 15px 0;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-color) !important;
+}
+
+.hero-header {
+  background: linear-gradient(to right, #6a0dad, #9b59b6);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+  
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ff5252 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  color: white !important;
+}
+
+.btn-outline-primary {
+  border: var(--accent-color) solid 1px !important;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-weight: 600;
+  background-color: transparent;
+  color: var(--accent-color) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #ff5252 !important;
+  color: white !important;
+  transform: translateY(-3px);
+  border: #ff5252 solid 1px !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.btn-outline-light {
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-weight: 600;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.testimonial {
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.testimonial-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.carousel-item {
+  height: 900px;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.carousel-caption {
+  bottom: 20%;
+  text-align: left;
+  max-width: 600px;
+  left: 10%;
+}
+
+.carousel-caption h5 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  animation: fadeInUp 1s;
+}
+
+.carousel-caption p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  animation: fadeInUp 1.2s;
+}
+
+.section-title {
+  position: relative;
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 270px;
+  height: 4px;
+  background-color: var(--accent-color);
+}
+
+.counter-box {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  background-color: white;
+}
+
+.counter-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.sticky-footer {
+  margin-top: auto;
+}
+
+.cta-section {
+  background: linear-gradient(to right, #6a0dad, #9b59b6);
+  padding: 80px 0;
+  color: white;
+}
+
+.list-group-item {
+  border-left: 4px solid var(--primary-color);
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-color: var(--secondary-color);
+  transform: translateX(5px);
+}
+
+.event-date {
+  background-color: var(--primary-color);
+  color: white;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.event-date .month {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.event-date .day {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.error-text {
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: 0.25rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    height: 350px;
+  }
+  
+  .carousel-caption {
+    bottom: 10%;
+    left: 5%;
+    right: 5%;
+  }
+  
+  .carousel-caption h5 {
+    font-size: 1.8rem;
+  }
+}
