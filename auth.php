@@ -4,7 +4,8 @@ require_once 'config.php';
 /**
  * Validate full name
  */
-function validateFullName($full_name) {
+function validateFullName($full_name)
+{
     if (empty($full_name)) {
         return "Full name is required.";
     }
@@ -20,7 +21,8 @@ function validateFullName($full_name) {
 /**
  * Validate email address
  */
-function validateEmail($email) {
+function validateEmail($email)
+{
     if (empty($email)) {
         return "Email is required.";
     }
@@ -33,7 +35,8 @@ function validateEmail($email) {
 /**
  * Validate password
  */
-function validatePassword($password) {
+function validatePassword($password)
+{
     if (empty($password)) {
         return "Password is required.";
     }
@@ -49,7 +52,8 @@ function validatePassword($password) {
 /**
  * Validate confirm password
  */
-function validateConfirmPassword($password, $confirm) {
+function validateConfirmPassword($password, $confirm)
+{
     if (empty($confirm)) {
         return "Please confirm your password.";
     }
@@ -62,7 +66,8 @@ function validateConfirmPassword($password, $confirm) {
 /**
  * Check if email already exists in database
  */
-function emailExists($email) {
+function emailExists($email)
+{
     global $conn;
     $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
@@ -76,36 +81,37 @@ function emailExists($email) {
 /**
  * Register a new user
  */
-function registerUser($full_name, $email, $password) {
+function registerUser($full_name, $email, $password)
+{
     global $conn;
-    
+
     $errors = [];
-    
+
     // Validate all fields
     $nameError = validateFullName($full_name);
     if ($nameError) $errors['full_name'] = $nameError;
-    
+
     $emailError = validateEmail($email);
     if ($emailError) $errors['email'] = $emailError;
-    
+
     $passwordError = validatePassword($password);
     if ($passwordError) $errors['password'] = $passwordError;
-    
+
     // Check if email exists (only if email validation passed)
     if (!$emailError && emailExists($email)) {
         $errors['email'] = "Email is already registered.";
     }
-    
+
     // If there are validation errors, return them
     if (!empty($errors)) {
         return ['success' => false, 'errors' => $errors];
     }
-    
+
     // Hash password and insert user
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     $stmt = $conn->prepare("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $full_name, $email, $hashedPassword);
-    
+
     if ($stmt->execute()) {
         $stmt->close();
         return ['success' => true, 'message' => 'Registration successful'];
@@ -118,48 +124,50 @@ function registerUser($full_name, $email, $password) {
 /**
  * Validate registration form with confirm password
  */
-function validateRegistration($full_name, $email, $password, $confirm) {
+function validateRegistration($full_name, $email, $password, $confirm)
+{
     $errors = [];
-    
+
     // Validate all fields
     $nameError = validateFullName($full_name);
     if ($nameError) $errors['full_name'] = $nameError;
-    
+
     $emailError = validateEmail($email);
     if ($emailError) $errors['email'] = $emailError;
-    
+
     $passwordError = validatePassword($password);
     if ($passwordError) $errors['password'] = $passwordError;
-    
+
     $confirmError = validateConfirmPassword($password, $confirm);
     if ($confirmError && !$passwordError) $errors['confirmPassword'] = $confirmError;
-    
+
     // Check if email exists (only if email validation passed)
     if (!$emailError && emailExists($email)) {
         $errors['email'] = "Email is already registered.";
     }
-    
+
     return $errors;
 }
 
 /**
  * Process user registration
  */
-function processRegistration($full_name, $email, $password, $confirm) {
+function processRegistration($full_name, $email, $password, $confirm)
+{
     // Validate all fields first
     $errors = validateRegistration($full_name, $email, $password, $confirm);
-    
+
     // If there are validation errors, return them
     if (!empty($errors)) {
         return ['success' => false, 'errors' => $errors];
     }
-    
+
     // Hash password and insert user
     global $conn;
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     $stmt = $conn->prepare("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $full_name, $email, $hashedPassword);
-    
+
     if ($stmt->execute()) {
         $stmt->close();
         return ['success' => true, 'message' => 'Registration successful'];
@@ -172,14 +180,15 @@ function processRegistration($full_name, $email, $password, $confirm) {
 /**
  * Login user and create session
  */
-function loginUser($email, $password) {
+function loginUser($email, $password)
+{
     global $conn;
-    
+
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
@@ -189,7 +198,7 @@ function loginUser($email, $password) {
             return ['success' => true, 'user' => $user];
         }
     }
-    
+
     $stmt->close();
     return ['success' => false, 'error' => 'Invalid email or password'];
 }
@@ -197,11 +206,12 @@ function loginUser($email, $password) {
 /**
  * Create user session
  */
-function createUserSession($user) {
+function createUserSession($user)
+{
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
+
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_name'] = $user['full_name'];
     $_SESSION['user_email'] = $user['email'];
@@ -212,10 +222,11 @@ function createUserSession($user) {
 /**
  * Register user and create session
  */
-function registerAndLogin($full_name, $email, $password, $confirm) {
+function registerAndLogin($full_name, $email, $password, $confirm)
+{
     // Process registration first
     $result = processRegistration($full_name, $email, $password, $confirm);
-    
+
     if ($result['success']) {
         // Get the newly created user data
         global $conn;
@@ -223,21 +234,22 @@ function registerAndLogin($full_name, $email, $password, $confirm) {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $userResult = $stmt->get_result();
-        
+
         if ($userResult->num_rows === 1) {
             $user = $userResult->fetch_assoc();
             createUserSession($user);
         }
         $stmt->close();
     }
-    
+
     return $result;
 }
 
 /**
  * Check if user is logged in
  */
-function isLoggedIn() {
+function isLoggedIn()
+{
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
@@ -247,11 +259,12 @@ function isLoggedIn() {
 /**
  * Get current user information
  */
-function getCurrentUser() {
+function getCurrentUser()
+{
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
+
     if (isLoggedIn()) {
         return [
             'id' => $_SESSION['user_id'],
@@ -260,30 +273,36 @@ function getCurrentUser() {
             'user_type' => $_SESSION["user_type"] ?? 'USER', // Default to 'USER' if not set
         ];
     }
-    
+
     return null;
 }
 
 /**
  * Logout user and destroy session
  */
-function logoutUser() {
+function logoutUser()
+{
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
+
     // Unset all session variables
     $_SESSION = array();
-    
+
     // Destroy the session cookie
     if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000,
-            $params["path"], $params["domain"],
-            $params["secure"], $params["httponly"]
+        setcookie(
+            session_name(),
+            '',
+            time() - 42000,
+            $params["path"],
+            $params["domain"],
+            $params["secure"],
+            $params["httponly"]
         );
     }
-    
+
     // Destroy the session
     session_destroy();
 }
@@ -291,9 +310,17 @@ function logoutUser() {
 /**
  * Redirect if user is already logged in (for login/register pages)
  */
-function redirectIfLoggedIn($redirect_to = 'home.php') {
+function redirectIfLoggedIn()
+{
     if (isLoggedIn()) {
-        header("Location: " . $redirect_to);
+        $currentUser = getCurrentUser();
+        if ($currentUser['user_type'] === 'OWNER' || $currentUser['user_type'] === 'ADMIN') {
+            // Redirect to admin dashboard if user is not a regular user
+            header("Location: dashboard.php");
+        } else {
+            // Redirect to home page for regular users
+            header("Location: home.php");
+        }
         exit();
     }
 }
@@ -301,10 +328,10 @@ function redirectIfLoggedIn($redirect_to = 'home.php') {
 /**
  * Redirect if user is not logged in (for protected pages)
  */
-function redirectIfNotLoggedIn($redirect_to = 'login.php') {
+function redirectIfNotLoggedIn()
+{
     if (!isLoggedIn()) {
-        header("Location: " . $redirect_to);
+        header("Location: login.php");
         exit();
     }
 }
-?>

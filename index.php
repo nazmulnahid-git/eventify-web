@@ -9,7 +9,7 @@
 <body class="d-flex flex-column min-vh-100">
 
 <!--NavBar-->
-<nav id='navBar' class="navbar navbar-expand-lg navbar-light bg-white sticky-top"></nav>
+<?php $currentPage='index.php'; require_once 'navbar.php'; ?>
 
 <!-- Header -->
 <header class="hero-header text-white d-flex align-items-center">
@@ -294,7 +294,7 @@
 </section>
 
 <!-- Footer -->
-<footer id="footer" class="bg-dark text-white py-5 mt-auto"></footer>
+<?php require_once 'footer.php'; ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>

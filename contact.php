@@ -9,7 +9,7 @@
 <body>
 
 <!--NavBar-->
-<nav id='navBar' class="navbar navbar-expand-lg navbar-light bg-white sticky-top"></nav>
+<?php $currentPage='contact.php'; require_once 'navbar.php'; ?>
 
 <!-- Contact Form -->
 <div class="container my-5">
@@ -36,7 +36,7 @@
 </div>
 
 <!-- Footer -->
-<footer id="footer" class="bg-dark text-white py-5 mt-auto"></footer>
+<?php require_once 'footer.php'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>

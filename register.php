@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <!--NavBar-->
-<nav id='navBar' class="navbar navbar-expand-lg navbar-light bg-white sticky-top"></nav>
+<?php require_once 'navbar.php'; ?>
 
 <!-- Registration Form -->
 <div class="d-flex justify-content-center align-items-center bg-light vh-100 mx-3">
