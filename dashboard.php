@@ -28,18 +28,19 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 
 <body>
   <nav class="sidebar close">
-    <header>
-      <div class="image-text">
-        <span class="image">
-          <img src="logo.png" alt="Logo">
-        </span>
-        <div class="text logo-text">
-          <span class="name">Dashboard</span>
-          <span class="profession">Admin Panel</span>
-        </div>
-      </div>
-      <i class='bx bx-chevron-right toggle'></i>
-    </header>
+  <header>
+  <div class="image-text">
+    <span class="image d-flex align-items-center justify-content-center" style="font-weight: bold; font-size: 20px;">
+      E
+    </span>
+    <div class="text logo-text">
+      <span class="name">Dashboard</span>
+      <span class="profession">Admin Panel</span>
+    </div>
+  </div>
+  <i class='bx bx-chevron-right toggle'></i>
+</header>
+
 
     <div class="menu-bar">
       <ul class="menu-links">

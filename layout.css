@@ -63,8 +63,14 @@ body {
     align-items: center;
     margin-top: 10px;
 }
-
-.sidebar header .image,
+.image {
+    min-width: 30px;
+    border-radius: 10px;
+    color: white;
+    background-color: var(--primary-color);
+    margin: 5px;
+}
+.sidebar header,
 .sidebar .icon {
     min-width: 60px;
     border-radius: 6px;
