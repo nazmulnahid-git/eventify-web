@@ -12,8 +12,45 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.table>tbody>tr:hover {
+  background-color: rgba(255, 107, 107, 0.04);
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-group .btn {
+  border-radius: 0.375rem !important;
+  margin-right: 0.25rem;
+}
+
+.btn-group .btn:last-child {
+  margin-right: 0;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.modal-content {
+  border-radius: 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.15);
+}
+
+.badge {
+  font-size: 0.75rem;
+}
+
+.table td {
+  border-bottom: 1px solid #e9ecef;
+}
+
+
 .navbar {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 15px 0;
 }
 
@@ -37,7 +74,7 @@ body {
   padding: 120px 0;
   position: relative;
   overflow: hidden;
-  
+
 }
 
 .btn-primary {
@@ -52,7 +89,7 @@ body {
 .btn-primary:hover {
   background-color: #ff5252 !important;
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   color: white !important;
 }
 
@@ -70,7 +107,7 @@ body {
   color: white !important;
   transform: translateY(-3px);
   border: #ff5252 solid 1px !important;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .btn-outline-light {
@@ -87,13 +124,13 @@ body {
   border: none;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .card-img-top {
@@ -120,7 +157,7 @@ body {
   border-radius: 50%;
   object-fit: cover;
   border: 5px solid white;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-item {
@@ -174,7 +211,7 @@ body {
   text-align: center;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   background-color: white;
 }
 
@@ -239,6 +276,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -249,13 +287,13 @@ body {
   .carousel-item {
     height: 350px;
   }
-  
+
   .carousel-caption {
     bottom: 10%;
     left: 5%;
     right: 5%;
   }
-  
+
   .carousel-caption h5 {
     font-size: 1.8rem;
   }
