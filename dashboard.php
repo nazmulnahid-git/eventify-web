@@ -51,12 +51,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
             <span class="text nav-text">Dashboard</span>
           </a>
         </li>
-        <li class="nav-link">
+        <!-- <li class="nav-link">
           <a href="?page=analytics">
             <i class='bx bx-pie-chart-alt icon'></i>
             <span class="text nav-text">Analytics</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-link">
           <a href="?page=services">
             <i class='bx bx-briefcase icon'></i>

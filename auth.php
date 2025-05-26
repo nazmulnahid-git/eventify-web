@@ -268,7 +268,7 @@ function getCurrentUser()
     if (isLoggedIn()) {
         return [
             'id' => $_SESSION['user_id'],
-            'name' => $_SESSION['user_name'],
+            'full_name' => $_SESSION['user_name'],
             'email' => $_SESSION['user_email'],
             'user_type' => $_SESSION["user_type"] ?? 'USER', // Default to 'USER' if not set
         ];
