@@ -3,6 +3,7 @@ require_once 'auth.php';
 
 // Check if user is logged in, redirect to login if not
 redirectIfNotLoggedIn('login.php');
+redirectIfNotAdminOrOnwer('home.php');
 
 // Get current user data
 $user = getCurrentUser();
@@ -98,35 +99,27 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <?php
     $page = $_GET['page'] ?? 'dashboard'; // default to dashboard
     ?>
-
     <?php if ($page === 'dashboard') : ?>
-      <div class="text">Dashboard</div>
-      <div style="text-align: center; margin: 0 auto; width: 500px;">
-        <h1>Welcome to the Dashboard</h1>
-      </div>
+      <div class="text text-dark fw-bold">Dashboard</div>
+      <?php require_once './pages/dashboard.php'; ?>
 
     <?php elseif ($page === 'services') : ?>
-      <div class="text">Services</div>
+      <div class="text text-dark fw-bold">Services</div>
       <?php require_once './pages/services.php'; ?>
     <?php elseif ($page === 'analytics') : ?>
-      <div class="text">Analytics</div>
+      <div class="text text-dark fw-bold">Analytics</div>
       <?php require_once './pages/analytics.php';
       ?>
     <?php elseif ($page === 'events') : ?>
-      <div class="text">Events</div>
+      <div class="text text-dark fw-bold">Events</div>
       <?php require_once './pages/events.php'; ?>
     <?php elseif ($page === 'categories') : ?>
-      <div class="text">Categories</div>
+      <div class="text text-dark fw-bold">Categories</div>
       <?php require_once './pages/categories.php'; ?>
     <?php elseif ($page === 'settings') : ?>
-      <div class="text">Settings</div>
+      <div class="text text-dark fw-bold">Settings</div>
       <?php require_once './pages/settings.php'; ?>
-
-
     <?php endif; ?>
-
-
-
   </section>
 
   <script>

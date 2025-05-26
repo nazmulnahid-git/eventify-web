@@ -130,11 +130,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h2 class="mb-0 text-dark fw-bold">Account Settings</h2>
                     <p class="text-muted mb-0">Manage your profile and security settings</p>
                 </div>
-                <div class="d-flex align-items-center">
+                <!-- <div class="d-flex align-items-center">
                     <span class="badge bg-primary px-3 py-2 fs-6">
                         <?= htmlspecialchars($currentUser['user_type']) ?>
                     </span>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

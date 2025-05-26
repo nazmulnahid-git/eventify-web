@@ -216,6 +216,8 @@ function createUserSession($user)
     $_SESSION['user_name'] = $user['full_name'];
     $_SESSION['user_email'] = $user['email'];
     $_SESSION['user_type'] = $user['user_type'] ?? 'USER';
+    $_SESSION['created_at'] = $user['created_at'] ?? date('Y-m-d H:i:s');
+    $_SESSION['updated_at'] = $user['updated_at'] ?? date('Y-m-d H:i:s');
     $_SESSION['is_logged_in'] = true;
 }
 
@@ -271,6 +273,8 @@ function getCurrentUser()
             'full_name' => $_SESSION['user_name'],
             'email' => $_SESSION['user_email'],
             'user_type' => $_SESSION["user_type"] ?? 'USER', // Default to 'USER' if not set
+            'created_at' => $_SESSION['created_at'],
+            'updated_at' => $_SESSION['updated_at']
         ];
     }
 
@@ -332,6 +336,17 @@ function redirectIfNotLoggedIn()
 {
     if (!isLoggedIn()) {
         header("Location: login.php");
+        exit();
+    }
+}
+
+/**
+ * Redirect if user is not an admin or owner
+ */
+function redirectIfNotAdminOrOnwer($redirectUrl = 'home.php') {
+    $currentUser = getCurrentUser();
+    if (!$currentUser || !in_array($currentUser['user_type'], ['ADMIN', 'OWNER'])) {
+        header("Location: $redirectUrl");
         exit();
     }
 }
