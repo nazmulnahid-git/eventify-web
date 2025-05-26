@@ -103,3 +103,49 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 });
+
+
+// Event Modal Management
+document.addEventListener("DOMContentLoaded", function () {
+  const eventModalElement = document.getElementById("eventModal");
+  if (eventModalElement) {
+    const eventModal = new bootstrap.Modal(eventModalElement);
+
+    // Make event functions globally accessible
+    window.openEventModal = function () {
+      // Reset form for new event
+      document.getElementById("eventModalTitle").innerText = "Add New Event";
+      document.getElementById("eventName").value = "";
+      document.getElementById("eventDescription").value = "";
+      document.getElementById("eventLocation").value = "";
+      document.getElementById("eventDate").value = "";
+      document.getElementById("price").value = "0";
+      document.getElementById("categoryId").value = "";
+      document.getElementById("eventId").value = "";
+
+      eventModal.show();
+    };
+
+    window.editEvent = function (id, name, description, location, date, price, categoryId) {
+      document.getElementById("eventModalTitle").innerText = "Edit Event";
+      document.getElementById("eventName").value = name;
+      document.getElementById("eventDescription").value = description;
+      document.getElementById("eventLocation").value = location;
+      
+      // Format the date for datetime-local input
+      const eventDate = new Date(date);
+      const formattedDate = eventDate.toISOString().slice(0, 16);
+      document.getElementById("eventDate").value = formattedDate;
+      
+      document.getElementById("price").value = price;
+      document.getElementById("categoryId").value = categoryId;
+      document.getElementById("eventId").value = id;
+
+      eventModal.show();
+    };
+
+    window.closeEventModal = function () {
+      eventModal.hide();
+    };
+  }
+});
