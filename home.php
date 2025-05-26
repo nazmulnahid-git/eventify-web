@@ -90,64 +90,49 @@ $recentActivity = [
         </div>
     </div>
 
-    <!-- Dashboard Content -->
-    <div class="container py-5">
-        <!-- Statistics Cards -->
-        <div class="row mb-5">
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="stat-icon bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-calendar-check fa-lg"></i>
-                        </div>
-                        <h3 class="fw-bold text-primary mb-1"><?php echo count($userEvents); ?></h3>
-                        <p class="text-muted mb-0">Total Events</p>
-                    </div>
-                </div>
+    <div class="card-body p-4">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 mb-3">
+              <div class="text-center p-4 rounded h-100" style="background-color: rgba(255, 107, 107, 0.1);">
+                <i class="bi bi-calendar-event display-4" style="color: #ff6b6b;"></i>
+                <h3 class="mt-3 mb-1 fw-bold" style="color: #ff6b6b;"><?= number_format($dashboardStats['total_events']) ?></h3>
+                <h6 class="mb-0 text-muted">Upcoming Events</h6>
+              </div>
             </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="stat-icon bg-success bg-opacity-10 text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-clock fa-lg"></i>
-                        </div>
-                        <h3 class="fw-bold text-success mb-1"><?php echo count($upcomingEvents); ?></h3>
-                        <p class="text-muted mb-0">Upcoming Events</p>
-                    </div>
-                </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+              <div class="text-center p-4 rounded h-100" style="background-color: rgba(0, 123, 255, 0.1);">
+                <i class="bi bi-gear display-4 text-primary"></i>
+                <h3 class="mt-3 mb-1 fw-bold text-primary"><?= number_format($dashboardStats['total_services']) ?></h3>
+                <h6 class="mb-0 text-muted">Pending Services</h6>
+              </div>
             </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="stat-icon bg-warning bg-opacity-10 text-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-hourglass-half fa-lg"></i>
-                        </div>
-                        <h3 class="fw-bold text-warning mb-1">1</h3>
-                        <p class="text-muted mb-0">Pending Approval</p>
-                    </div>
-                </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+              <div class="text-center p-4 rounded h-100" style="background-color: rgba(40, 167, 69, 0.1);">
+                <i class="bi bi-bag-check display-4 text-success"></i>
+                <h3 class="mt-3 mb-1 fw-bold text-success"><?= number_format($dashboardStats['total_orders']) ?></h3>
+                <h6 class="mb-0 text-muted">Completed</h6>
+              </div>
             </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="stat-icon bg-info bg-opacity-10 text-info rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fas fa-envelope fa-lg"></i>
-                        </div>
-                        <h3 class="fw-bold text-info mb-1">3</h3>
-                        <p class="text-muted mb-0">New Messages</p>
-                    </div>
-                </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+              <div class="text-center p-4 rounded h-100" style="background-color: rgba(255, 193, 7, 0.1);">
+                <i class="bi bi-currency-dollar display-4 text-warning"></i>
+                <h3 class="mt-3 mb-1 fw-bold text-warning">$<?= number_format($dashboardStats['total_revenue'], 2) ?></h3>
+                <h6 class="mb-0 text-muted">Total Orders</h6>
+              </div>
             </div>
+          </div>
         </div>
 
-        <div class="row">
+    <!-- Dashboard Content -->
+
+        <div class="row p-5">
             <!-- Upcoming Events -->
             <div class="col-lg-8 mb-5">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-white border-bottom-0 py-4">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="mb-0 fw-bold">My Events</h4>
-                            <a href="contact.php" class="btn btn-primary btn-sm">
+                            <h4 class="mb-0 fw-bold">My Upcoming Events</h4>
+                            <a href="book_event.php" class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus me-1"></i>Book New Event
                             </a>
                         </div>
@@ -182,19 +167,6 @@ $recentActivity = [
                                                              ($event['status'] === 'pending' ? 'warning' : 'secondary'); 
                                                     ?> text-capitalize"><?php echo $event['status']; ?></span>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
-                                            <div class="btn-group btn-group-sm">
-                                                <button class="btn btn-outline-primary btn-sm">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-outline-secondary btn-sm">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-outline-danger btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -248,13 +220,11 @@ $recentActivity = [
                     </div>
                     <div class="card-body">
                         <div class="d-grid gap-2">
-                            <a href="contact.php" class="btn btn-primary">
-                                <i class="fas fa-plus me-2"></i>Book New Event
-                            </a>
-                            <a href="services.php" class="btn btn-outline-primary">
+                            
+                            <a href="book_services.php" class="btn btn-outline-primary">
                                 <i class="fas fa-list me-2"></i>View Services
                             </a>
-                            <a href="contact.php" class="btn btn-outline-secondary">
+                            <a href="contact.php" class="btn btn-outline-primary">
                                 <i class="fas fa-headset me-2"></i>Contact Support
                             </a>
                         </div>
@@ -262,7 +232,6 @@ $recentActivity = [
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Footer -->
     <?php require_once 'footer.php'; ?>
